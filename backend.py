@@ -27,7 +27,6 @@ app.add_middleware(
 )
 
 # PostgreSQL connection parameters
-# Use "db" if FastAPI is running in the same Docker network
 load_dotenv()
 db_params = {
     "dbname": os.getenv("DB_NAME"),

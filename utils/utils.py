@@ -10,7 +10,6 @@ def read_text_file(text_file):
     return text
 
 def is_text_weird(text, threshold=0.5):
-    """Check if the text is weird based on the ratio of non-ASCII characters."""
     non_ascii_count = len(re.findall(r'[^\x00-\x7F]', text))
     # Calculate the ratio of non-ASCII characters
     weirdness_ratio = non_ascii_count / max(len(text), 1)
@@ -18,12 +17,12 @@ def is_text_weird(text, threshold=0.5):
     return weirdness_ratio > threshold
 
 def ocr_pdf_file(pdf_file, total_page):
-    ocr = PaddleOCR(use_angle_cls=True, lang="ch", page_num=total_page)  # need to run only once to download and load model into memory
-    # ocr = PaddleOCR(use_angle_cls=True, lang="ch", page_num=PAGE_NUM,use_gpu=0) # 如果需要使用GPU，请取消此行的注释 并注释上一行 / To Use GPU,uncomment this line and comment the above one.
+    ocr = PaddleOCR(use_angle_cls=True, lang="ch", page_num=total_page)
+    # ocr = PaddleOCR(use_angle_cls=True, lang="ch", page_num=PAGE_NUM,use_gpu=0) # To Use GPU,uncomment this line and comment the above one.
     result = ocr.ocr(pdf_file, cls=True)
     for idx in range(len(result)):
         res = result[idx]
-        if res is None:  # 识别到空页就跳过，防止程序报错 / Skip when empty result detected to avoid TypeError:NoneType
+        if res is None:  # Skip when empty result detected to avoid TypeError:NoneType
             print(f"[DEBUG] Empty page {idx+1} detected, skip it.")
             continue
     all_text = []
@@ -39,7 +38,6 @@ def ocr_pdf_file(pdf_file, total_page):
     return '\n'.join(all_text).replace('\x00', '') 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
-    """Extract text from a PDF file using PyMuPDF."""
     extracted_text = ""
     with fitz.open(pdf_path) as pdf_document:
         for page_num in range(pdf_document.page_count):

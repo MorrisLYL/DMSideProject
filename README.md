@@ -55,7 +55,7 @@ cd pdf-parsing-app
 ### 2. Environment Variables
 
 Create a `.env` file in the root directory with the following content:
-but I already created one by default in local side
+but I already created one by default for local side
 ```env
 # .env
 DB_NAME=pdf_data
