@@ -1,0 +1,21 @@
+# Dockerfile.frontend
+FROM node:18
+
+# Set the working directory
+WORKDIR /app/frontend/front-end-dm-agent
+
+# Copy package.json and yarn.lock to leverage Docker cache
+COPY frontend/front-end-dm-agent/package.json ./
+COPY frontend/front-end-dm-agent/yarn.lock ./
+
+# Install frontend dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy the rest of the frontend application code
+COPY frontend/front-end-dm-agent ./
+
+# Expose port 5173 for Vite
+EXPOSE 5173
+
+# Command to run the frontend application, binding to all network interfaces
+CMD ["yarn", "dev", "--host"]

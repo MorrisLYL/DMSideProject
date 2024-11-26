@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node modules
+node_modules/
+frontend/front-end-dm-agent/node_modules/
+
+# Docker files
+Dockerfile.backend
+Dockerfile.frontend
+
+# Environment files
+.env
+.env.compose
+.env.app
+
+# Git
+.git
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/

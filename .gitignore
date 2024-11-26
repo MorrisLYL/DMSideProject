@@ -1,0 +1,13 @@
+# Ignore node_modules and Python virtual environments
+frontend/front-end-dm-agent/node_modules/
+__pycache__/
+.env.app
+
+# Ignore build outputs
+dist/
+build/
+*.log
+*.ipynb
+# Ignore Docker-related files
+.docker/
+*.tar
